@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="style.css" rel="stylesheet">
+	
+</head>
+<body>
+	<div class="header"><table><tr><td><a href="#">Home</a></td><td><a href="#">About</a></td><td><a href="#">Contact</a></td></tr></table></div>
+	<div class="cont">
+		<div class="searchbox">
+			<form>
+			<center><input type="text" onkeyup="search(this.value);return false;" id="movie-name" class="moviename" placeholder="Enter movie name"></br></br>
+			
+			</form>
+		</div>
+	</div>
+	<p id="details"></p>
+	
+
+
+
+<input type="text" id="search" />
+<ul id="list"><li>Results coming soon...</li></ul>
+
+
+<script>
+function search(v){
+  var list = $("#list");
+	list.html("Searching...");
+  $.ajax({
+	url:"http://api.themoviedb.org/3/search/movie?api_key=cf325b0db7e946962912e814a513144c&language=en-US",
+	data: {query:v},
+	type:"GET",
+	success: function(d){
+	  //var d = JSON.parse(data);
+	  console.log(d.results);
+	  list.html("");
+	  for(var i=0;i<d.results.length;i++){
+	    var movie = d.results[i];
+	    var html = "<li><strong> "+" "+movie.original_title+" "+"</strong><small>"+" "+movie.release_date+" "+"</small></li>"+" "+movie.overview+"<br/>"+"<br/>";
+	    list.append(html);  
+	  }
+	}
+  });
+
+}
+
+</script>
+</body>
+</html>
