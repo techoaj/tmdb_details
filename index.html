@@ -41,7 +41,7 @@ function search(v){
 	  list.html("");
 	  for(var i=0;i<d.results.length;i++){
 	    var movie = d.results[i];
-	    var html = "<li><strong> "+" "+movie.original_title+" "+"</strong><small>"+" "+movie.release_date+" "+"</small></li>"+" "+movie.overview+"<br/>"+"<br/>";
+	    var html = '<div  style="border: 0px solid black; padding: 20px; border-radius: 10px; background: #1fd295; color: white">'+'<li><strong> '+movie.original_title+" "+"</strong><small>"+" "+movie.release_date+" "+"</small></li>"+" "+"<div style:colorgray>"+movie.overview+'</div>'+"</div>"+"<br/>"+"<br/>";
 	    list.append(html);  
 	  }
 	}
